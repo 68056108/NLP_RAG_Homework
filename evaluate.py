@@ -1,10 +1,10 @@
 """วัดผล ต้นฉบับของอาจารย์ vs ฉบับแก้ไข ด้วยคำถาม 29 ข้อใน steps/questions.json
 
-    python authenticRAG_fixed/evaluate.py
+    python evaluate.py
 
 - ทั้งสองระบบใช้ LLM ตัวเดียวกัน (ค่า LLM_MODEL ใน .env หรือ environment) ทั้งสร้าง context / ตอบ / ให้คะแนน
-- ต้นฉบับรันด้วย class ของอาจารย์จริง (import จาก 2025-authenticRAG/authenticRAG.py) เปลี่ยนแค่ชื่อ index และให้เรียก LLM ตัวเดียวกัน
-- ผลลัพธ์: authenticRAG_fixed/results.json และ answers.json
+- ต้นฉบับรันด้วย class ของอาจารย์จริง (import จาก original/authenticRAG.py) เปลี่ยนแค่ชื่อ index และให้เรียก LLM ตัวเดียวกัน
+- ผลลัพธ์: results.json และ answers.json
 """
 import json
 import os
@@ -14,9 +14,9 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
+ROOT = HERE  # โฟลเดอร์บนสุดของ repo
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(ROOT / "2025-authenticRAG"))
+sys.path.insert(0, str(ROOT / "original"))
 from authenticRAG_fixed import MD_PATHS, AnthropicStyleContextualRAG as Fixed  # noqa: E402  (โหลด .env ด้วย)
 
 os.environ.setdefault("OPENROUTER_API_KEY", "unused")  # class ต้นฉบับบังคับให้มี; การเรียก LLM ถูกเปลี่ยนไปใช้ตัวเดียวกับฉบับแก้ไข
@@ -103,7 +103,7 @@ teacher = Teacher().setup(fixed.call_qwen_api)
 report, answers = {}, {}
 
 # --- ต้นฉบับ: chunk + context + index ด้วยโค้ดอาจารย์ (context จาก chunk ตัวเองตามบั๊ก มี cache จากรอบวัดก่อน)
-t_docs = teacher.load_documents([str(ROOT / "2025-authenticRAG" / "corpus_input" / p.name) for p in MD_PATHS])
+t_docs = teacher.load_documents([str(ROOT / "corpus_input" / p.name) for p in MD_PATHS])
 old = ROOT / "results" / "diagnosis_contexts.json"
 cache = {}
 if old.exists() and os.environ.get("LLM_MODEL") == "gemini-3.5-flash-lite":  # cache ใช้ได้เฉพาะ LLM ตัวเดียวกัน

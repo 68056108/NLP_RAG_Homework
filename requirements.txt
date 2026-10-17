@@ -1,0 +1,15 @@
+# เวอร์ชันที่ใช้รันผลใน README (Python 3.11)
+
+# ฉบับแก้ไข + สคริปต์ใน steps/
+openai==3.24.0
+opensearch-py==3.2.0
+sentence-transformers==6.1.0
+transformers==5.18.0
+torch==2.14.1
+numpy==1.26.4
+llama-index-core==0.14.25
+
+# โค้ดต้นฉบับของอาจารย์ใน original/ (evaluate.py import ไปรันด้วย)
+langchain==0.0.354
+langchain-community==0.0.13
+tqdm==4.70.1

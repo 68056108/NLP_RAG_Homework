@@ -1,11 +1,11 @@
-"""authenticRAG.py ของอาจารย์ (2025-authenticRAG) ฉบับแก้ไข
+"""authenticRAG.py ของอาจารย์ (original/authenticRAG.py, จาก github.com/aekanun2020/2025-authenticRAG) ฉบับแก้ไข
 
 โครงสร้าง class / ชื่อ method เหมือนต้นฉบับ จุดที่แก้มีป้าย "FIX n" ตรงกับหัวข้อใน CHANGES.md
 
-    python authenticRAG_fixed/authenticRAG_fixed.py              # สร้าง index ใหม่ แล้วถาม 2 คำถามตัวอย่าง
-    python authenticRAG_fixed/authenticRAG_fixed.py --search     # ไม่ index ใหม่ ถามอย่างเดียว (แทน onlysearchAuthenticRAG.py)
+    python authenticRAG_fixed.py              # สร้าง index ใหม่ แล้วถาม 2 คำถามตัวอย่าง
+    python authenticRAG_fixed.py --search     # ไม่ index ใหม่ ถามอย่างเดียว (แทน onlysearchAuthenticRAG.py)
 
-ตั้งค่า LLM ผ่าน environment หรือไฟล์ .env ที่โฟลเดอร์ kdai-rag-workshop:
+ตั้งค่า LLM ผ่าน environment หรือไฟล์ .env ที่โฟลเดอร์บนสุดของ repo นี้:
     OPENROUTER_API_KEY=...                       (ค่าเดิมของอาจารย์: Qwen ผ่าน OpenRouter)
   หรือ LLM_API_KEY / LLM_BASE_URL / LLM_MODEL   (เช่น Gemini ที่รองรับ OpenAI SDK)
 """
@@ -23,7 +23,7 @@ from llama_index.core import Document
 from llama_index.core.node_parser import MarkdownNodeParser, SentenceSplitter
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parent
+ROOT = HERE  # โฟลเดอร์บนสุดของ repo (มี corpus_input/, .env)
 
 # FIX 9: อ่าน .env และรองรับ LLM เจ้าอื่นที่ใช้ OpenAI SDK ได้ (ต้นฉบับผูกกับ OPENROUTER_API_KEY อย่างเดียว)
 _env = ROOT / ".env"

@@ -1,0 +1,77 @@
+{
+  "load": {
+    "files": 4,
+    "chars_lost": 0
+  },
+  "chunking": {
+    "chunks": 53,
+    "tokens_median": 330,
+    "tokens_max": 2431,
+    "over_256_tokens": 35,
+    "over_256_rate": 0.660377358490566,
+    "tiny_chunks": 0,
+    "embed_truncated_rate": 0.0,
+    "evidence_split": 0,
+    "evidence_total": 49
+  },
+  "contextual": {
+    "document_equals_chunk_rate": 1.0,
+    "mean_doc_coverage": 0.07539164944335108,
+    "llm_calls": 53
+  },
+  "analyzer": {
+    "standard": {
+      "tokens": 4381,
+      "vocab": 2672,
+      "thai_token_mean_len": 22.928767960868235,
+      "thai_tokens_over_20_chars": 0.44145521247324976,
+      "query_term_found_in_corpus": 0.056547619047619034
+    },
+    "thai": {
+      "tokens": 12227,
+      "vocab": 1950,
+      "thai_token_mean_len": 4.454308797127468,
+      "thai_tokens_over_20_chars": 0.0,
+      "query_term_found_in_corpus": 0.913394775159481
+    }
+  },
+  "retrieval": {
+    "BM25 (standard)": {
+      "Hit@1": 0.0,
+      "Hit@5": 0.07142857142857142,
+      "MRR@5": 0.03571428571428571,
+      "zero_results": 23,
+      "chars_to_llm": 1981.6785714285713
+    },
+    "dense (knn)": {
+      "Hit@1": 0.7142857142857143,
+      "Hit@5": 0.9642857142857143,
+      "MRR@5": 0.8077380952380953,
+      "zero_results": 0,
+      "chars_to_llm": 10660.82142857143
+    },
+    "dense (exact cosine)": {
+      "Hit@1": 0.7142857142857143,
+      "Hit@5": 0.9642857142857143,
+      "MRR@5": 0.8077380952380953,
+      "zero_results": 0,
+      "chars_to_llm": 10660.82142857143
+    },
+    "hybrid RRF (ครู)": {
+      "Hit@1": 0.6785714285714286,
+      "Hit@5": 0.9642857142857143,
+      "MRR@5": 0.7958333333333333,
+      "zero_results": 0,
+      "chars_to_llm": 10949.357142857143
+    }
+  },
+  "retrieval_checks": {
+    "knn_recall_at_10_vs_exact": 1.0,
+    "rrf_rank0_vs_rank1_top5_diff": 0
+  },
+  "truncate": {
+    "real_over_estimate": 4.3190421966459756,
+    "missed_truncations": 4,
+    "real_tokens_max": 4661
+  }
+}
